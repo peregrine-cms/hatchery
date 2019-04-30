@@ -1,0 +1,2 @@
+<sly data-sly-use.model="model" />
+<div>${model.test}</div>

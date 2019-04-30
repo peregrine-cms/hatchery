@@ -5,7 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>hatch</title>
+    <title>hatch | a tool to hatch html code into a scripting language</title>
+    <script>
+      var sample = { title: 'title', subtitle: 'subtitle', intro: 'intro', text: 'text' };
+      var template = '<div>{{text}}</div>';
+      var code = `const selectors = [
+    { name: 'title', path: 'h1' },
+    { name: 'subtitle', path: 'h2' },
+    { name: 'intro', path: 'p:eq(0)' },
+    { name: 'text', path: 'p:eq(1)' }
+];
+
+function convert() {
+    // bind the field and hide it if value is undefined
+    selectors.title.bindText().hideIfUndefined();
+
+    // bind the field and hide it if value is undefined, explicit
+    selectors.subtitle.bindText();
+    selectors.subtitle.hideIfUndefined();
+    
+    // bind the field as html
+    selectors.intro.bindHTML(fields.intro).hideIfUndefined();
+
+    // bind the field as html
+    selectors.text.bindHTML(fields.text).hideIfUndefined();
+}`;
+    </script>
   </head>
   <body>
     <noscript>
