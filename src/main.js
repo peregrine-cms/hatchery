@@ -19,7 +19,9 @@ const store = new Vuex.Store({
     // eslint-disable-next-line    
     code: code,
     // eslint-disable-next-line
-    template: template
+    template: template,
+    // eslint-disable-next-line
+    sample: window.sample
   },
   mutations: {
     setPath( state, value) {
@@ -28,6 +30,10 @@ const store = new Vuex.Store({
     setCode( state, value) {
       state.code = value;
       window.code = value;
+    },
+    setSample( state, value) {
+      state.sample = value;
+      window.sample = value;
     }
   } 
 });

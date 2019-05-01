@@ -7,7 +7,12 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>hatch | a tool to hatch html code into a scripting language</title>
     <script>
-      var sample = { title: 'title', subtitle: 'subtitle', intro: 'intro', text: 'text' };
+      var sample = `{ 
+  "title": "title", 
+  "subtitle": "subtitle", 
+  "intro": "intro", 
+  "text": "text" 
+}`;
       var template = '<div>{{text}}</div>';
       var code = `const selectors = [
     { name: 'title', path: 'h1' },

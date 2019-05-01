@@ -6,7 +6,7 @@
       <CodeView id="code"></CodeView>
       <div id="htmloutput">
         <iframe v-bind:src="encoded"></iframe>
-<render-output id="rendered" ref="rendered"></render-output>
+        <render-output id="rendered" ref="rendered" style="display: none;"></render-output>
       </div>
     </div>
   </div>
@@ -26,7 +26,12 @@ Vue.component('render-output', {
   template: tmpl,
   data() {
     // eslint-disable-next-line
-    return sample;
+    try {
+    const ret = JSON.parse(window.sample);
+    return ret;
+    } catch(err) {
+      return {};
+    }
   }
 });
 
@@ -36,7 +41,8 @@ export default {
     return { view: 'split' , encoded: ""}
   },
   computed: {
-    code() { return this.$store.state.code }
+    code() { return this.$store.state.code },
+    sample() { return this.$store.state.sample }
   },
   components: {
     HtmlInput,
@@ -44,6 +50,10 @@ export default {
   },
   watch: {
     code(value) {
+      // eslint-disable-next-line
+      this.refresh();
+    },
+    sample(value) {
       // eslint-disable-next-line
       this.refresh();
     }
@@ -64,7 +74,7 @@ export default {
           template: template,
           data() {
             // eslint-disable-next-line
-            return sample;
+            return JSON.parse(sample);
           }
         });
       } catch( error ) {
